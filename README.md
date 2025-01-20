@@ -10,7 +10,7 @@ An attendance app that allows the user to make an attendance report and see the 
 
 ## Technologies
 
-- Flutter Framework 3.24.5 version
+- Flutter Framework 3.27.2 version
 - Dart 3.4.4 (stable) version
 - Realtime Database
 - Firebase
