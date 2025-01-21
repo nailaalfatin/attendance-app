@@ -23,41 +23,68 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: InkWell( //buat link yang bisa di klik
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    onTap: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => const AttendanceScreen())
-                      );
-                    },
-                    child: const Column(
-                      children: [
-                        Image(
-                          image: AssetImage('/assets/images/ic_attend.png'),
-                          height: 100,
-                          width: 100,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "Attendance Report",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                _buildMenuItem(
+                  context, 
+                  imagePath: "/assets/images/ic_attend.png", 
+                  label: "Attendance Report", 
+                  destination: const AttendanceScreen()
                 ),
-                const SizedBox(height: 40)
+                const SizedBox(height: 40),
+                _buildMenuItem(
+                  context, 
+                  imagePath: "/assets/images/ic_permission.png", 
+                  label: "Permission Report", 
+                  destination: const AttendanceScreen()
+                ),
+                const SizedBox(height: 40),
+                _buildMenuItem(
+                  context, 
+                  imagePath: "/assets/images/ic_attendance_history.png", 
+                  label: "Attendance History", 
+                  destination: const AttendanceScreen()
+                ),
               ],
             ),
           ),
         )
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(
+    BuildContext context, {
+      required String imagePath,
+      required String label,
+      required Widget destination
+    }) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      child: InkWell( //buat link yang bisa di klik
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        onTap: () {
+          Navigator.push(
+              context, 
+            MaterialPageRoute(builder: (context) => destination)
+          );
+        },
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage(imagePath),
+              height: 100,
+              width: 100,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -107,6 +134,6 @@ class HomeScreen extends StatelessWidget {
           ],
         )
       )
-    );
+    ) ?? false; //default value ketika semua kode yang ada di blok Alert tidak ter-eksekusi karena beberapa hal
   }
 }
