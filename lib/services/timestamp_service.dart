@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-//ini buat dapetin data waktu secara realtime
+// ini buat dapetin data waktu secara realtime
 void setDateTime(Function(String, String, String) onDateTimeSet) {
   var dateNow = DateTime.now();
   var dateFormat = DateFormat('dd mm yyyy');
@@ -13,7 +13,7 @@ void setDateTime(Function(String, String, String) onDateTimeSet) {
   onDateTimeSet(date, time, currentDate);
 }
 
-//ini buat ngeset status kehadiran
+// ini buat ngeset status kehadiran
 void setAttendanceStatus(Function(String) onStatusSet) {
   var dateNow = DateTime.now();
   var hour = int.parse(DateFormat('hh').format(dateNow));
