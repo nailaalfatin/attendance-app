@@ -26,9 +26,11 @@ Future<void> submitAttendanceReport(BuildContext context, String address, String
                 color: Colors.white
               ),
               SizedBox(width: 10),
-              Text(
-                "Attendance submitted successfully",
-                style: TextStyle(color: Colors.white),
+              Expanded(
+                child: Text(
+                  "Attendance submitted successfully",
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),
@@ -51,20 +53,42 @@ Future<void> submitAttendanceReport(BuildContext context, String address, String
                 color: Colors.red,
               ),
               const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  "Ups, $e",
-                  style: const TextStyle(color: Colors.white),
-                ),
+              Text(
+                "Ups, $e",
+                style: const TextStyle(color: Colors.white),
               )
             ],
           ),
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: Colors.blueAccent,
           shape: const StadiumBorder(),
           behavior: SnackBarBehavior.floating,
         )
       );
     }
+  }).catchError((error) { //ini buat error yang general
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(
+              Icons.error_outline,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                "Ups, $error",
+                style: const TextStyle(color: Colors.white),
+              ),
+            )
+          ],
+        ),
+        backgroundColor: Colors.blueAccent,
+        shape: const StadiumBorder(),
+        behavior: SnackBarBehavior.floating,
+      )
+    );
+    Navigator.of(context).pop();
   });
 }
 
