@@ -23,7 +23,7 @@ class FaceDetectorComponent {
       final double? verticalPosition = face.headEulerAngleY; //ini itu untuk menghandle posisi wajah secara vertikal
       final double? horizontalPosition = face.headEulerAngleZ; //ini itu untuk menghandle posisi wajah secara horizontal
       // Z di situ bukan sumbu horizontal kayak x di koordinat biasa, tapi lebih ke rotasi kemiringan kepala. 
-      // kalo mau tau apakah seseorang beneran menghadap kamera atau gambar 2D doang, bisa dicek dari kombinasi Yaw & Roll.
+      // kalo mau tau apakah seseorang beneran menghadap kamera atau gambar 2D doang, bisa dicek dari kombinasi Yaw(Y) & Roll(Z).
 
       // perkondisian apabila face landmark sudah aktif, ditandai oleh (mulut, mata, pipi, hidung, dan telinga)
       final FaceLandmark? leftEar = face.landmarks[FaceLandmarkType.leftEar];
