@@ -68,7 +68,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       body: SingleChildScrollView(
         child: Card(
           color: Colors.white,
-          margin: EdgeInsets.fromLTRB(10, 10, 10, 30),
+          margin: const EdgeInsets.fromLTRB(10, 10, 10, 30),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
