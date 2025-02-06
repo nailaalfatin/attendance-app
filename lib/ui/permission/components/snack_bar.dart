@@ -9,9 +9,19 @@ class SnackBarComponent {
           Icon(
             isError ? Icons.error_outline : Icons.check_circle_outline,
             color: Colors.white,
+          ),
+          const SizedBox(),
+          Expanded(
+            child: Text(
+              message,
+              style: const TextStyle(color: Colors.white),
+            )
           )
         ],
-      )
+      ),
+      backgroundColor: isError ? Colors.red : Colors.blueGrey,
+      shape: const StadiumBorder(),
+      behavior: SnackBarBehavior.floating,
     ));
   }
 }
