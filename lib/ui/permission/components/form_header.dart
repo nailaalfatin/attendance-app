@@ -20,7 +20,10 @@ class FormHeader extends StatelessWidget{
       child: Row(
         children: [
           const SizedBox(width: 12),
-          Icon(icon, color: Colors.white),
+          Icon(
+            icon, 
+            color: Colors.white
+          ),
           const SizedBox(width: 12),
           Text(
             title,
