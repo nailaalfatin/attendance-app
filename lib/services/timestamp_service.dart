@@ -20,13 +20,13 @@ void setAttendanceStatus(Function(String) onStatusSet) {
   var minute = int.parse(DateFormat('mm').format(dateNow));
 
   String attendanceStatus;
-
-  if (hour < 7 || (hour == 7 && minute == 00)) {
+  // ini menentukan status kehadiran berdasarkan jam sekarang
+  if (hour < 7 || (hour == 7 && minute == 00)) { // sebelum/jam 7: Attend
     attendanceStatus = "Attend";
-  } else if (hour > 7 || (hour == 7 && minute >= 01)) {
+  } else if (hour > 7 || (hour == 7 && minute >= 01)) {  // lewat jam 7: Late
     attendanceStatus = "Late";
   } else {
-    attendanceStatus = "Absent";
+    attendanceStatus = "Absent"; // sisanya dianggap Absent
   }
 
   onStatusSet(attendanceStatus);

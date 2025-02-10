@@ -6,10 +6,10 @@ import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class FaceDetectorComponent {
   final FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(FaceDetectorOptions(
-    enableContours: true,
-    enableClassification: true,
-    enableTracking: true,
-    enableLandmarks: true
+    enableContours: true, // buat mendeteksi bentuk wajah (garis mata, hidung, dll.)
+    enableClassification: true, // buat mengenali ekspresi wajah (disini sih makenya senyum)
+    enableTracking: true, // buat melacak wajah (biar bisa dipantau di frame berikutnya)
+    enableLandmarks: true // buat mendeteksi fitur wajah (mata, hidung, dll.)
   ));
 
   Future<void> detectFaces(XFile image) async {

@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-Future<void> getGeoLocationPosition(
-  BuildContext context, 
-  Function(Position) onPositionReceive
-) async {
+// ini buat minta lokasi user, terus hasilnya dikirim ke callback (onPositionReceive)
+Future<void> getGeoLocationPosition(BuildContext context, Function(Position) onPositionReceive) async { 
   // ignore: deprecated_member_use
   Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low); //kenapa pake yang low? biar hemat batre dan data
   onPositionReceive(position);
 }
 
+// ini buat convert koordinat jadi alamat lengkap pake package geocoding
 Future<void> getAddressFromLongLat(Position position, Function(String) onAddressReceived) async {
   List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude); //latitude vertikal, longitude horizontal
   Placemark place = placemark[0];
@@ -18,8 +17,10 @@ Future<void> getAddressFromLongLat(Position position, Function(String) onAddress
   onAddressReceived(address);
 }
 
+// ini buat ngecek apakah lokasi service aktif & user udah kasih izin lokasi
 Future<bool> handleLocationPermission(BuildContext context) async {
   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  // kalo lokasi mati ➝ munculin SnackBar
   if (!serviceEnabled) {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Row(
@@ -44,6 +45,7 @@ Future<bool> handleLocationPermission(BuildContext context) async {
   
   LocationPermission permission = await Geolocator.checkPermission();
 
+  // kalo user belum kasih izin/permission denied ➝ request lagi
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
@@ -69,6 +71,7 @@ Future<bool> handleLocationPermission(BuildContext context) async {
     }
   }
 
+  // kalo user menolak lagi/deniedForever ➝ kasih warning ke user karena kita nggak bisa akses lokasi lagi
   if (permission == LocationPermission.deniedForever) {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Row(

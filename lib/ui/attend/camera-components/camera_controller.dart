@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class CameraControllerComponent {
   List<CameraDescription>? cameras;
-  CameraController? controller;
-  bool isBusy = false;
+  CameraController? controller; // buat kontrol kamera
+  bool isBusy = false; // buat nge-track status pemakaian kamera
 
   Future<void> loadCamera() async {
-    cameras = await availableCameras();
+    cameras = await availableCameras(); // ambil list kamera yang tersedia
     if (cameras != null && cameras!.isNotEmpty) { // maksudnya disini tuh kameranya ada(bekeja)
       controller = CameraController(
         cameras![0], //berarti ini tuh bukan camera depan, bukan camera belakang
@@ -20,7 +20,7 @@ class CameraControllerComponent {
   }
 
   Widget buildCameraPreview() {
-    if (controller == null || !controller!.value.isInitialized) {
+    if (controller == null || !controller!.value.isInitialized) { // kalau kamera belum siap
       // aksi apabila kondisi bernilai negatif
       return const Center(child: CircularProgressIndicator());
     }

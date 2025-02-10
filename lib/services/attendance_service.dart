@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // ini itu entry point buat submitting the attendance report
-final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance');
+final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance'); // 'attendance' itu unique key / collection yg bakal nyimpen data absen
 
 Future<void> submitAttendanceReport(BuildContext context, String address, String name, String attendanceStatus, String timeStamp) async {
   showLoaderDialog(context);
   dataCollection.add(
-    {
+    { // ini buat tambah data baru ke collection attendance, datanya dikirim dalam bentuk JSON dengan key-value
       'address' : address,
       'name' : name,
       'description' : attendanceStatus,
@@ -43,7 +43,7 @@ Future<void> submitAttendanceReport(BuildContext context, String address, String
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen())
       );
-    } catch (e) { //ini adalah kode kalo dia tuh salah atau error
+    } catch (e) { //ini adalah kode kalo dia tuh salah atau ada data yg invalid
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Row(
@@ -65,7 +65,7 @@ Future<void> submitAttendanceReport(BuildContext context, String address, String
         )
       );
     }
-  }).catchError((error) { //ini buat error yang general
+  }).catchError((error) { //ini buat handle error yg general, misalnya kalau koneksi internet mati atau Firestore lagi down
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -108,7 +108,7 @@ void showLoaderDialog(BuildContext context) {
   );
 
   showDialog(
-    barrierDismissible: false, 
+    barrierDismissible: false, // biar user gabisa nutup pop-up sebelum proses selesai
     context: context,
     builder: (BuildContext context) {
       return alert;
