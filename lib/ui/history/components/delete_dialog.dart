@@ -5,7 +5,7 @@ class DeleteDialog extends StatelessWidget {
   final String documentId;
   final CollectionReference dataCollection;
 
-  const DeleteDialog({super.key, required this.documentId, required this.dataCollection});
+  const DeleteDialog({super.key, required this.documentId, required this.dataCollection, required Null Function() onConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class DeleteDialog extends StatelessWidget {
             ),
           ),
           onPressed: () {
+            // buat berkomunikasi dengan database untuk melakukan penghapusan data dari database
             dataCollection.doc(documentId).delete();
             Navigator.pop(context);
           }, 

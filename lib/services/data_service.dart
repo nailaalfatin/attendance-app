@@ -4,7 +4,7 @@ class DataService {
   final CollectionReference dataCollection = FirebaseFirestore.instance.collection('attendance');
 
   Future<QuerySnapshot> getData() {
-    // ini buat ambil semua data dari collection 'attendance'
+    // ini buat ambil semua data dari collection 'attendance' (database)
     // hasilnya nanti berupa QuerySnapshot, yg isinya kumpulan dokumen dari collection itu
     return dataCollection.get();
   }

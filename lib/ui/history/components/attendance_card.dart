@@ -67,7 +67,7 @@ class AttendanceHistoryCard extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            data['name'],
+                            data['name'], // ini tuh dapet dari key value di attendance_service.dart
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black
@@ -90,7 +90,7 @@ class AttendanceHistoryCard extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            data['description'],
+                            data['description'], // ini tuh dapet dari key value di attendance_service.dart
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black
